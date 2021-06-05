@@ -1,0 +1,25 @@
+{% extends 'Base/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-3">
+        <h5>Change Your Profile Picture</h5>
+        <div class="">
+            {% if request.user.userprofileimage.user_image.url %}
+                <img class="profile-image-edit" src="{{ request.user.userprofileimage.user_image.url }}" alt="">
+            {% else %}
+                <img class="profile-image-edit" src="{% static 'img/icons8_user.svg' %}" alt="">
+            {% endif %}
+        </div>
+        <form action="{% url 'set-profile-picture' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="file" name="file">
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn-outline-secondary" value="Save">
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    {% include 'Base/_messages.html' %}
+{% endblock %}

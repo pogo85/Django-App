@@ -1,0 +1,61 @@
+{% extends 'Base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Income</li>
+        </ol>
+    </nav>
+
+    <h1>Add Income</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'add_income' %}" method="post">
+                {% include 'Base/_messages.html' %}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input id="amount" name="amount" type="number" class="form-control form-control-sm"
+                           value="{{ values.amount }}">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <input id="Description" name="description" type="text" class="form-control form-control-sm"
+                           value="{{ values.description }}">
+                </div>
+                <div class="form-group">
+                    <label for="Category">Source</label>
+                    <select id="Category" name="source" class="form-control form-control">
+                        {% if values.source %}
+                            <option value="--Select--">--Select--</option>
+                            {% for s in source %}
+                                {% if s.name == values.source %}
+                                    <option value="{{ s.name }}" selected>
+                                        {{ s.name }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ s.name }}">
+                                        {{ s.name }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <option selected>--Select--</option>
+                            {% for s in source %}
+                                <option value="{{ s.name }}">{{ s.name }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input id="date" name="income_date" type="date" class="form-control form-control-sm">
+                </div>
+                <input type="submit" value="Add-Income" class="btn btn-success btn-sm">
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+#chart {
+    height: 30%;
+    width: 35%;
+}
+
+.income-card {
+    text-align: center;
+    position: relative;
+    background: rgba(225, 225, 225, 1);
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: rgba(0,0,0,1);
+    border-radius: 1rem;
+    border: 1rem dot-dash black;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+}
+
+.card-header-text {
+    font-size: 1rem;
+}
+
+.cb {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.statistic-container {
+    margin-top: 5rem;
+}

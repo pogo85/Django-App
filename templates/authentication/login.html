@@ -1,0 +1,53 @@
+{% extends 'Base/_auth.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+        body {
+            background-color: blueviolet;
+        }
+
+        .password-reset{
+            position: absolute;
+            bottom: 34%;
+            right: 5%;
+        }
+
+        .login-button-container{
+            margin-top: 12%;
+        }
+    </style>
+
+    <div class="text-center mt-5">
+        <div class="card mt-5" style="max-width: 500px; margin: auto; border-radius: 20px;">
+            <div class="card-body">
+                <form action="{% url 'login_view' %}" method="POST" style="max-width: 450px; margin: auto;">
+                    {% csrf_token %}
+                    <img class="mt-5 mb-4" src="{% static 'img/icons8_login_2.svg' %}" alt="Login Logo..." height="72">
+                    <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+                    {% include 'Base/_messages.html' %}
+                    <div class="form-group">
+                        <label for="username-field" class="sr-only"></label>
+                        <input type="text" name="username" placeholder="Username"
+                               value="{{ field_values.username }}"
+                               id="username-field"
+                               class="form-control form-control-sm">
+                    </div>
+                    <div class="form-group">
+                        <label for="password-field" class="sr-only"></label>
+                        <input type="password" name="password" placeholder="Password" id="password-field"
+                               class="form-control form-control-sm"/>
+                    </div>
+
+                    <div class="login-button-container">
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
+                    </div>
+                </form>
+                <a class="password-reset mt-3" href="{% url 'request-reset-link' %}">Forgot Password?</a>
+                <div class="text-center mt-5">
+                    <a href="{% url 'registration_view' %}" class="btn btn-dark">Don't have an account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

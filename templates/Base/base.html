@@ -1,0 +1,112 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    {% block title %}
+    {% endblock %}
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+    <!-- Chart JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+            integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/font-awesome/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Pivot</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <ul class="navbar-nav px-3" style="display: flex; flex-direction: row; align-items: center">
+        <li class="nav-item text-nowrap mb-2">
+
+            <div class="action">
+                <div class="profile" onclick="menuToggle();">
+                    {% if userimage %}
+                        <img class="profile-image" src="{{ request.user.userprofileimage.user_image.url }}" alt="">
+                    {% else %}
+                        <img class="profile-image profile-invert" src="{% static 'img/icons8_user.svg' %}" alt="">
+                    {% endif %}
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <div class="username-display text-center">
+                                ({{ request.user.username }})
+                            </div>
+                        </li>
+                        <li>
+                            <a class="" href="{% url 'set-profile-picture' %}">Edit Profile Picture</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="sign-out-button" action="{% url 'logout_view' %}" method="POST">
+                                {% csrf_token %}
+                                <input class="btn btn-sm btn-danger" type="submit" value="Sign Out">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+
+        {% include 'Base/_sidebar.html' %}
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+    </div>
+</div>
+<script>
+    feather.replace()
+
+    let menuActive = false;
+
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        if (menuActive) {
+            toggleMenu.classList.remove('active');
+            menuActive = !menuActive;
+        } else {
+            toggleMenu.classList.add('active');
+            menuActive = !menuActive;
+        }
+    }
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

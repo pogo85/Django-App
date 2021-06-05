@@ -1,0 +1,64 @@
+{% extends 'Base/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="col-md-10 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Expenses</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Expense Summary</li>
+                </ol>
+            </nav>
+        </div>
+        <h1 class="display-3">Expense Summary</h1>
+    </div>
+    {#    Monthly and Yearly Data#}
+    <div class="container statistic-container">
+        <div class="row">
+            <div class="col">
+                <div class="income-card card">
+                    <div class="card-header">
+                        <span class="card-header-text">This Month</span>
+                    </div>
+                    <div class="card-body cb">
+                        <i id="income-symbol-1" class="fas fa-money-bill-alt"></i>
+                        {{ current_month_income }}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="income-card card">
+                    <div class="card-header">
+                        <span class="card-header-text">Previous Month</span>
+                    </div>
+                    <div class="card-body cb">
+                        <i id="income-symbol-1" class="fas fa-money-bill-alt"></i>
+                        {{ previous_month_income }}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="income-card card">
+                    <div class="card-header">
+                        <span class="card-header-text">This Year</span>
+                    </div>
+                    <div class="card-body cb">
+                        <i id="income-symbol-1" class="fas fa-money-bill-alt"></i>
+                        {{ current_year_income }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="income-card card">
+                    <div class="card-header">
+                        <span class="card-header-text">Previous Year</span>
+                    </div>
+                    <div class="card-body cb">
+                        <i id="income-symbol-1" class="fas fa-money-bill-alt"></i>
+                        {{ previous_year_income }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
